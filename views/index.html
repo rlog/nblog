@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Node Blog</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+	<h1><%= tit%></h1>
+	<p><a href="new">+POST</a></p>
+	<% if(articles.length){ %>
+		<ul>
+			<% for(var i=0; i<articles.length; i++){ %>
+				<% article = articles[i] %>
+				<li>
+					<a href="<%= article._id %>"><%= article.title %></a> 
+					<span><%= article.created_at %></span>
+				</li>
+			<% } %>
+		</ul>
+	<% } else { %>
+		<h2>Blog List Empty!</h2>
+		<p><a href="new">+POST</a></p>
+	<% } %>
+
+</body>
+</html>
