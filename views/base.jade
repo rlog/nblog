@@ -1,7 +1,19 @@
 !!!5
 html
-    head
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        script(src='http://localhost:35729/livereload.js?snipver=1')
-    body
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src='http://localhost:35729/livereload.js?snipver=1')
+	body
+		#head
+			block head
+			h1 Time Machine
+		#main
+			block main
+			#content
+			block content
+			#sidebar
+			block sidebar
+		#foot
+			block foot
+			p copyright rlog.cn

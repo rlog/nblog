@@ -12,7 +12,7 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade'); //使用html模版
+  app.set('view engine', 'jade');
   app.set('view options', {'layout': false}); //不需要layout模版
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -32,7 +32,7 @@ var articleProvider = new ArticleProvider('localhost', 27017);
 // Routes
 app.get('/', function(req, res){
 	articleProvider.findAll(function(error, docs){
-		res.render('index.html', {
+		res.render('index.jade', {
 			tit: 'Blog List',
 			articles: docs
 		});
