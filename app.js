@@ -12,8 +12,7 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.set('view engine', 'html'); //使用html模版
-  app.register('.html', require('ejs')); //指定模版扩展名为.html, ejs模版引擎
+  app.set('view engine', 'jade'); //使用html模版
   app.set('view options', {'layout': false}); //不需要layout模版
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -41,7 +40,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/new', function(req, res){
-	res.render('new.html', {
+	res.render('new.jade', {
 		tit: 'New Post'
 	});
 });
@@ -58,7 +57,7 @@ app.post('/new', function(req, res){
 app.get('/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
-		res.render('post.html', {locals: {
+		res.render('post.jade', {locals: {
 			title: article.title,
 			article: article.body,
 			time: article.created_at 
