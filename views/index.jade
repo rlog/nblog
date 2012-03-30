@@ -1,11 +1,15 @@
 extends base
 
 block main
-	h2= tit
-	p
-		a(href="new") +POST
-	ul
-		- each article in articles
-			li
-				a(href="article._id")= article.title
-				span= article.created_at
+  h2= tit
+  p 
+    a(href="new") +POST
+  - if (articles.length)
+    ul
+      - each article in articles
+        li
+          a(href="#{article._id}")= article.title
+          span= article.created_at
+  - else
+    p There is no blog, please 
+      a(href="new") ADD 

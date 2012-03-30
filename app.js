@@ -58,7 +58,7 @@ app.get('/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
 		res.render('post.jade', {locals: {
-			title: article.title,
+			tit: article.title,
 			article: article.body,
 			time: article.created_at 
 		}})
