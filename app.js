@@ -58,12 +58,24 @@ app.get('/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
 		res.render('post.jade', {locals: {
+      _id: article._id,
 			tit: article.title,
 			article: article.body,
-			time: article.created_at 
+			time: article.created_at,
+      comments: article.comments
 		}})
-	})
-})
+	});
+});
+
+app.post('/addComment', function(req, res){
+	articleProvider.addComment(req.param('_id'), {
+		person: req.param('person'),
+		comment: req.param('comment'),
+    created_at: new Date()
+	}, function(error, docs){
+		res.redirect('/' + req.param('_id'))
+	});
+});
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

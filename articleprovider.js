@@ -80,4 +80,24 @@ ArticleProvider.prototype.save = function(articles, callback){
 	});
 };
 
+ArticleProvider.prototype.addComment= function(articleId, comment, callback){
+	this.getCollection(function(error, article_collection){
+    if(error){
+      callback(error);
+    } else {
+      article_collection.update(
+        {_id: article_collection.db.bson_serializer.ObjectID.createFromHexString(articleId)},
+        {"$push": {comments: comment}},
+        function(error, acticle){
+          if(error){
+            callback(error);
+          } else {
+            callback(null, article);
+          }
+        }
+      )
+    }
+  });
+};
+
 exports.ArticleProvider = ArticleProvider;
