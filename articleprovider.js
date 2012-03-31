@@ -92,7 +92,7 @@ ArticleProvider.prototype.addComment= function(articleId, comment, callback){
           if(error){
             callback(error);
           } else {
-            callback(null, article);
+            callback(null);
           }
         }
       )
