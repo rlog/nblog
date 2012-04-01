@@ -1,0 +1,28 @@
+extends base
+
+block content
+  h2= tit
+
+  p= time
+  div#cont 
+    !{article}
+
+  div#comment
+    ul
+      - each comment in comments
+        li
+          span= comment.person
+          p= comment.comment
+
+    div
+      form(method="post", action="/post/addComment")
+        input(type="hidden", name="_id", value=_id)
+        p Author:
+          input(type="text", name="person")
+        p Comment:
+          textarea(name="comment", rows="3")
+        p
+          input.bt(type="submit", value="Send")
+
+
+

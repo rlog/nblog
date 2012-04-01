@@ -8,7 +8,7 @@ block main
     ul
       - each article in articles
         li
-          a(href="#{article._id}")= article.title
+          a(href="post/#{article._id}")= article.title
           span= article.created_at
   - else
     p There is no blog, please 

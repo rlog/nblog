@@ -39,25 +39,25 @@ app.get('/', function(req, res){
 	});
 });
 
-app.get('/new', function(req, res){
-	res.render('new.jade', {
+app.get('/admin/new', function(req, res){
+	res.render('admin/new.jade', {
 		tit: 'New Post'
 	});
 });
 
-app.post('/new', function(req, res){
+app.post('/admin/new', function(req, res){
 	articleProvider.save({
 		title: req.param('title'),
 		body: req.param('body')	
 	}, function(error, docs){
-		res.redirect('/')
+		res.redirect('/admin/list')
 	});
 });
 
-app.get('/:id', function(req, res){
+app.get('/post/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
-		res.render('post.jade', {locals: {
+		res.render('single.jade', {locals: {
       _id: article._id,
 			tit: article.title,
 			article: article.body,
@@ -67,13 +67,13 @@ app.get('/:id', function(req, res){
 	});
 });
 
-app.post('/addComment', function(req, res){
+app.post('/post/addComment', function(req, res){
 	articleProvider.addComment(req.param('_id'), {
 		person: req.param('person'),
 		comment: req.param('comment'),
     created_at: new Date()
 	}, function(error, docs){
-		res.redirect('/' + req.param('_id'))
+		res.redirect('/post/' + req.param('_id'))
 	});
 });
 
