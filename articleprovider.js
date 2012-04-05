@@ -6,13 +6,19 @@ var ObjectID = require('mongodb').ObjectID;
 
 ArticleProvider = function(host, port){
 	this.db = new Db('blog', new Server(host, port, {auto_reconnect: true}, {}));
-	this.db.open(function(){});
+	this.db.open(function(error){
+		if(error){
+        console.log(error);
+        return;
+		}
+  });
 };
 
 ArticleProvider.prototype.getCollection = function(callback){
 	this.db.collection('acticles', function(error, article_collection){
 		if(error){
-			callback(error);
+        console.log(error);
+        return;
 		} else {
 			callback(null, article_collection);
 		}

@@ -5,16 +5,15 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='http://localhost:35729/livereload.js?snipver=1')
   body
-    #head
-      block head
-        h1 
-          a(href='/') Time Machine
-    #main
-      block main
-        #content
-          block content
-        #sidebar
-          block sidebar
-    #foot
-      block foot
+    nav 
+    section#main
+      header
+        block header
+          h1 
+            a(href='/') Time Machine
+          p.quote 
+      section#content
+        block content 
+    footer
+      block footer
         p copyright rlog.cn

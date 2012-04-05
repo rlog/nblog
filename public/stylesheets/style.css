@@ -1,27 +1,126 @@
-body, html {
-  margin:0; 
-  padding:0;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  text-stroke: 1px rgba(255, 255, 255, 0.1);
-  width:980px;
   margin:0 auto;
+  background:#eee url('/images/bg.png');
+  line-height:1;
+  color:#333;
 }
 input, textarea {
 	border:1px solid #aaa;
 	padding:3px
 }
 a {
-  color: #00B7FF;
-  padding: 3px;
+    -moz-transition: all 0.18s ease-in 0s;
+    color: #888;
+    text-decoration: none;
 }
 a:hover {
-  background-color: #00B7FF;
-  color: #fff;
+    background-color: #888;
+    color: #FFFFFF;
 }
 
+/*layout*/
+nav {
+  height:30px;
+  background:#333;
+}
+
+#main {
+  width:1002px;
+  margin:0 auto;
+}
+
+header { 
+  margin:50px 0;
+  zoom:1;
+  overflow:hidden;
+}
+header h1 {
+  font-size:40px;
+}
+header h1 a{
+  float:left;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+footer {
+  height:100px;
+  background:#333;
+}
+
+/* mod */
+article { 
+  zoom:1;
+  overflow: hidden;
+  margin-bottom:40px;
+}
+
+article aside{ 
+  float: left;
+  width: 200px;
+  text-align:right;
+  padding-right:20px;
+  font-size:12px;
+  color:#4c4c4c;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+article h3, article h3 a{ 
+  font-size:24px;
+  margin-bottom:10px;
+}
+article .post{ 
+  background:#fff;
+  padding:30px;
+  float:right;
+  zoom:1;
+  overflow: hidden;
+  width:720px;
+}
+article .post .content{ 
+  line-height:1.5em;
+}
+
+/* ...... */
 a.lbt {
 	color: #DDD;
 	font-size:12px;
@@ -77,53 +176,6 @@ a.lbt:hover {
     -webkit-box-shadow: 0 1px 2px #145fb5 inset;
     -o-box-shadow: 0 1px 2px #145fb5 inset;
     box-shadow: 0 1px 2px #589be7 inset;
-}
-
-ul {
-	padding: 0;
-	margin: 0;
-	margin-left: 20px;
-}
-
-ul li {
-	padding: 0;
-	margin: 0;
-	border-bottom: 1px solid #ddd;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-}
-ul li span {
-	font-size: 12px;
-	color: #aaa;
-}
-
-#head {
-  height:60px;
-  line-height:60px;
-  padding-left:10px;
-  background:#eee;
-  border-bottom:1px solid #ddd;
-}
-
-#main {
-  overflow:hidden;
-  zoom:1;
-  padding:0 10px;
-}
-#content {
-  float:left;
-  width:800px;
-}
-#sidebar {
-  float:right;
-  width:150px;
-}
-#foot {
-  height:100px;
-  text-align:center;
-  color:#aaa;
-  border-top:1px solid #ddd;
-  margin-top:10px;
 }
 
 #editArticleBody {

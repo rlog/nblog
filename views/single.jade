@@ -1,13 +1,16 @@
 extends base
 
 block content
-  h2= tit
-
-  p= time
-  div#cont 
-    !{article}
-
-  div#comment
+  - var pdate = new Date(time); 
+  - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
+  article
+    aside 
+      span= fdate
+    .post
+      h3= tit
+      .content= article 
+      
+  section#comment
     ul
       - each comment in comments
         li
@@ -15,7 +18,7 @@ block content
           p= comment.comment
 
     div
-      form(method="post", action="/post/addComment")
+      form(method="post", action="/addComment")
         input(type="hidden", name="_id", value=_id)
         p Author:
           input(type="text", name="person")
@@ -23,6 +26,3 @@ block content
           textarea(name="comment", rows="3")
         p
           input.bt(type="submit", value="Send")
-
-
-
