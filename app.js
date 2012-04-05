@@ -8,8 +8,9 @@ var express = require('express')
 
 var app = module.exports = express.createServer();
 
-// Configuration
-
+/**
+ * Configuration
+ */
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -29,7 +30,10 @@ app.configure('production', function(){
 });
 
 var articleProvider = new ArticleProvider('localhost', 27017);
-// Routes
+
+/**
+ * Routes
+ */
 app.get('/', function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('index.jade', {
