@@ -37,24 +37,8 @@ var articleProvider = new ArticleProvider('localhost', 27017);
 app.get('/', function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('index.jade', {
-			tit: 'Blog List',
 			articles: docs
 		});
-	});
-});
-
-app.get('/admin/new', function(req, res){
-	res.render('admin/new.jade', {
-		tit: 'New Post'
-	});
-});
-
-app.post('/admin/new', function(req, res){
-	articleProvider.save({
-		title: req.param('title'),
-		body: req.param('body')	
-	}, function(error, docs){
-		res.redirect('/admin/list')
 	});
 });
 
@@ -62,11 +46,11 @@ app.get('/post/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
 		res.render('single.jade', {locals: {
-      _id: article._id,
+		    _id: article._id,
 			tit: article.title,
 			article: article.body,
 			time: article.created_at,
-      comments: article.comments
+		    comments: article.comments
 		}})
 	});
 });
@@ -78,6 +62,30 @@ app.post('/post/addComment', function(req, res){
     created_at: new Date()
 	}, function(error, docs){
 		res.redirect('/post/' + req.param('_id'))
+	});
+});
+
+app.get('/admin', function(req, res){
+	articleProvider.findAll(function(error, docs){
+		res.render('admin/list.jade', {
+			tit: 'Blog List',
+			articles: docs
+		});
+	});
+});
+
+app.get('/admin/new', function(req, res){
+	res.render('admin/new.jade', {
+		tit: 'New Blog'
+	});
+});
+
+app.post('/admin/new', function(req, res){
+	articleProvider.save({
+		title: req.param('title'),
+		body: req.param('body')	
+	}, function(error, docs){
+		res.redirect('/admin/list.jade')
 	});
 });
 
