@@ -1,0 +1,33 @@
+!!!5
+html
+  head
+    title Node Blog Admin
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/admin.css')
+    script(src='http://localhost:35729/livereload.js?snipver=1')
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.brand(href="/admin/") NBlog Admin
+          .nav-collapse
+            ul.nav
+              li
+                a(href="/admin/list") List
+              li
+                a(href="/admin/new") New Post 
+              li
+                a(href="/admin/help") Help 
+            p.navbar-text.pull-right
+              a(href="/") SeeBlog
+
+    .container
+      h1= title 
+      .row
+        .span8
+          block main
+        .span4
+          block bar
+
+    script(type='text/javascript', src='/javascripts/do.min.js', data-cfg-autoload='true')
+    script(type='text/javascript', src='/javascripts/admin.js')

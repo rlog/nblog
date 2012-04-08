@@ -1,0 +1,3 @@
+Do.ready(function(){
+	
+})

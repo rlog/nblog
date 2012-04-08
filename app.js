@@ -34,9 +34,10 @@ var articleProvider = new ArticleProvider('localhost', 27017);
 /**
  * Routes
  */
+
 app.get('/', function(req, res){
 	articleProvider.findAll(function(error, docs){
-		res.render('index.jade', {
+		res.render('default/index.jade', {
 			articles: docs
 		});
 	});
@@ -45,7 +46,7 @@ app.get('/', function(req, res){
 app.get('/post/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
-		res.render('single.jade', {locals: {
+		res.render('default/single.jade', {locals: {
 		    _id: article._id,
 			tit: article.title,
 			article: article.body,
@@ -67,8 +68,16 @@ app.post('/post/addComment', function(req, res){
 
 app.get('/admin', function(req, res){
 	articleProvider.findAll(function(error, docs){
+		res.render('admin/index.jade', {
+			title: '管理首页'
+		});
+	});
+});
+
+app.get('/admin/list', function(req, res){
+	articleProvider.findAll(function(error, docs){
 		res.render('admin/list.jade', {
-			tit: 'Blog List',
+			title: '博客列表',
 			articles: docs
 		});
 	});
@@ -76,7 +85,7 @@ app.get('/admin', function(req, res){
 
 app.get('/admin/new', function(req, res){
 	res.render('admin/new.jade', {
-		tit: 'New Blog'
+		title: '撰写文章'
 	});
 });
 
@@ -85,7 +94,16 @@ app.post('/admin/new', function(req, res){
 		title: req.param('title'),
 		body: req.param('body')	
 	}, function(error, docs){
-		res.redirect('/admin/list.jade')
+		res.redirect('/admin/list');
+	});
+});
+
+app.get('/admin/help', function(req, res){
+	articleProvider.findAll(function(error, docs){
+		res.render('admin/help.jade', {
+			title: '帮助',
+			articles: docs
+		});
 	});
 });
 

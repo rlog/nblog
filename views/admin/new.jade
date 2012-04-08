@@ -1,12 +1,20 @@
-extends ../base
+extends ./base
 
-block content
-  h2= tit
-  #new
-    form(method='post', action="new")
-      p Title:
-        input#editArticleTitle(type="text", name="title")
-      p
-        textarea#editArticleBody(name="body", rows="15")
-      p
-        input.bt(type="submit", value="POST")
+block main
+	form.form-horizontal(method='post', action="/admin/new")
+		fieldset
+			.control-group
+				label.control-label 标题：
+				.controls
+					input(name='title', type="text")
+			.control-group
+				label.control-label 内容：
+				.controls
+					textarea(name='body')
+
+			.form-actions
+				input.btn.btn-primary(type="submit")
+				button.btn cancel
+
+block bar
+p 123

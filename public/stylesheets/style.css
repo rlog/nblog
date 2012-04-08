@@ -42,9 +42,9 @@ table {
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin:0 auto;
-  background:#eee url('/images/bg.png');
+  background:#fff;
   line-height:1;
-  color:#333;
+  color:#5d534b;
 }
 input, textarea {
 	border:1px solid #aaa;
@@ -52,11 +52,12 @@ input, textarea {
 }
 a {
     -moz-transition: all 0.18s ease-in 0s;
+    -webkit-transition: all 0.18s ease-in 0s;
     color: #888;
     text-decoration: none;
 }
 a:hover {
-    background-color: #888;
+    background-color: #5d534b;
     color: #FFFFFF;
 }
 
@@ -64,15 +65,16 @@ a:hover {
 nav {
   height:30px;
   background:#333;
+  display: none;
 }
 
 #main {
-  width:1002px;
+  width:980px;
   margin:0 auto;
 }
 
 header { 
-  margin:50px 0;
+  margin:50px 0 70px;
   zoom:1;
   overflow:hidden;
 }
@@ -82,6 +84,14 @@ header h1 {
 header h1 a{
   float:left;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  font-family: "Times New Roman";
+  color:#333;
+}
+header h1 a:hover {
+  background:none;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter:alpha(opacity=8);
 }
 footer {
   height:100px;
@@ -92,32 +102,32 @@ footer {
 article { 
   zoom:1;
   overflow: hidden;
-  margin-bottom:40px;
+  margin-bottom:50px;
 }
 
 article aside{ 
   float: left;
-  width: 200px;
+  width: 172px;
   text-align:right;
-  padding-right:20px;
+  padding-top:45px;
   font-size:12px;
   color:#4c4c4c;
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+article aside p{ 
+  line-height:2em;
 }
 article h3, article h3 a{ 
   font-size:24px;
-  margin-bottom:10px;
+  margin-bottom:20px;
 }
 article .post{ 
-  background:#fff;
-  padding:30px;
   float:right;
   zoom:1;
   overflow: hidden;
-  width:720px;
+  width:778px;
 }
 article .post .content{ 
-  line-height:1.5em;
+  line-height:1.8em;
 }
 
 /* ...... */
