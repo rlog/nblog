@@ -77,7 +77,7 @@ app.get('/admin', function(req, res){
 app.get('/admin/list', function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('admin/list.jade', {
-			title: '博客列表',
+			title: '文章列表',
 			articles: docs
 		});
 	});

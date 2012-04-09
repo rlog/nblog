@@ -14,7 +14,7 @@ block content
           .post
             h3
               a(href="post/#{article._id}")= article.title
-            .content= article.body
+            .content!= article.body
   - else
     p There is no blog, please 
       a(href="new") ADD 

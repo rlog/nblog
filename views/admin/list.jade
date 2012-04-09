@@ -1,3 +1,22 @@
 extends ./base
 
-block container
+block main 
+  - if (articles.length)
+    table.table
+      - each article in articles
+        - var pdate = new Date(article.created_at); 
+        - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
+        tr
+          td
+            a(href="/post/#{article._id}", target="_blank")= article.title
+          td
+            p.op
+              button.btn.btn-mini 编辑
+              button.btn.btn-mini 隐藏
+              button.btn.btn-mini.btn-danger 删除
+  - else
+    p There is no blog!
+
+block bar 
+  p
+    a.btn.btn-large.btn-primary(href="/admin/new") 添加文章

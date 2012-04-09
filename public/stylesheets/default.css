@@ -1,0 +1,193 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin:0 auto;
+  background:#fff;
+  line-height:1;
+  color:#5d534b;
+}
+input, textarea {
+	border:1px solid #aaa;
+	padding:3px
+}
+a {
+    -moz-transition: all 0.18s ease-in 0s;
+    -webkit-transition: all 0.18s ease-in 0s;
+    color: #888;
+    text-decoration: none;
+}
+a:hover {
+    background-color: #5d534b;
+    color: #FFFFFF;
+}
+
+/*layout*/
+nav {
+  height:30px;
+  background:#333;
+  display: none;
+}
+
+#main {
+  width:980px;
+  margin:0 auto;
+}
+
+header { 
+  margin:50px 0 70px;
+  zoom:1;
+  overflow:hidden;
+}
+header h1 {
+  font-size:40px;
+}
+header h1 a{
+  float:left;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  font-family: "Times New Roman";
+  color:#333;
+}
+header h1 a:hover {
+  background:none;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter:alpha(opacity=8);
+}
+footer {
+  height:100px;
+  background:#333;
+}
+
+/* mod */
+article { 
+  zoom:1;
+  overflow: hidden;
+  margin-bottom:50px;
+}
+
+article aside{ 
+  float: left;
+  width: 172px;
+  text-align:right;
+  padding-top:45px;
+  font-size:12px;
+  color:#4c4c4c;
+}
+article aside p{ 
+  line-height:2em;
+}
+article h3, article h3 a{ 
+  font-size:24px;
+  margin-bottom:20px;
+}
+article .post{ 
+  float:right;
+  zoom:1;
+  overflow: hidden;
+  width:778px;
+}
+article .post .content{ 
+  line-height:1.8em;
+}
+
+/* ...... */
+a.lbt {
+	color: #DDD;
+	font-size:12px;
+	text-decoration:none;
+	padding:1px;
+}
+a.lbt:hover {
+	color: #fff;
+	background:#f00;
+}
+
+.bt {
+    background: #3c8ae0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3d92e6), to(#3a7fd6));
+    background: -moz-linear-gradient(top,  #3d92e6,  #3a7fd6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d92e6', endColorstr='#3a7fd6');
+    -moz-box-shadow: 0 1px 0 #77B4EE inset;
+    -webkit-box-shadow: 0 1px 0 #77B4EE inset;
+    -o-box-shadow: 0 1px 0 #77B4EE inset;
+    box-shadow: 0 1px 0 #77B4EE inset;
+    border: 1px solid #35649d;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    padding: 4px 10px 3px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #204877;
+    text-decoration: none !important;
+    vertical-align: middle;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.bt:hover {
+    background: #0f64d0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3685e1), to(#3574ce));
+    background: -moz-linear-gradient(top,  #3685e1,  #3574ce);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3685e1', endColorstr='#3574ce');
+    -moz-box-shadow: 0 1px 0 #589be7 inset;
+    -webkit-box-shadow: 0 1px 0 #589be7 inset;
+    -o-box-shadow: 0 1px 0 #589be7 inset;
+    box-shadow: 0 1px 0 #589be7 inset;
+}
+
+.bt:active {
+    background: #0f64d0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3685e1), to(#3574ce));
+    background: -moz-linear-gradient(top,  #3685e1,  #3574ce);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3685e1', endColorstr='#3574ce');
+    -moz-box-shadow: 0 1px 2px #145fb5 inset;
+    -webkit-box-shadow: 0 1px 2px #145fb5 inset;
+    -o-box-shadow: 0 1px 2px #145fb5 inset;
+    box-shadow: 0 1px 2px #589be7 inset;
+}
+
+#editArticleBody {
+  width:99%;
+}
