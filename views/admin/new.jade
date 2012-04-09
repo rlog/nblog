@@ -1,7 +1,7 @@
 extends ./base
 
 block main
-	form.form-horizontal(method='post', action="/admin/new")
+	form.form-horizontal#new-post(method='post', action="/admin/new")
 		fieldset
 			.control-group
 				label.control-label 标题：
@@ -10,7 +10,11 @@ block main
 			.control-group
 				label.control-label 内容：
 				.controls
-					textarea(name='body')
+					textarea#markdown(name='body')
+			.control-group
+				label.control-label 标签：
+				.controls
+					input(name='tags', type="text")
 
 			.form-actions
 				input.btn.btn-primary(type="submit")

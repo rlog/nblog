@@ -1,3 +1,20 @@
 body {
     padding-top: 60px;
 }
+
+h2 {
+	margin-bottom:30px;
+}
+#new-post .control-label {
+	width:50px;
+}
+#new-post .controls {
+	margin-left:60px;
+}
+#new-post .controls input ,
+#new-post .controls textarea {
+	width:98%;
+}
+#new-post .controls textarea {
+	height:400px;
+}
