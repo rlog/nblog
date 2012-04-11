@@ -3,6 +3,7 @@
  */
 
 var express = require('express')
+  , markdown = require('markdown')
   , routes = require('./routes')
   , ArticleProvider = require('./Articleprovider').ArticleProvider;
 
@@ -92,7 +93,7 @@ app.get('/admin/new', function(req, res){
 app.post('/admin/new', function(req, res){
 	articleProvider.save({
 		title: req.param('title'),
-		body: req.param('body')	
+		body: markdown.toHTML(req.param('body'))	
 	}, function(error, docs){
 		res.redirect('/admin/list');
 	});
