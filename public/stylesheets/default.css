@@ -111,7 +111,14 @@ article aside{
   text-align:right;
   padding-top:45px;
   font-size:12px;
-  color:#4c4c4c;
+  color:#aaa;
+}
+article aside a{ 
+  color: #aaa;
+}
+article aside a:hover{ 
+  color: #fff;
+  background-color: #aaa;
 }
 article aside p{ 
   line-height:2em;
@@ -129,6 +136,30 @@ article .post{
 article .post .content{ 
   line-height:1.8em;
 }
+
+/* post style */
+.post .content h1 {font-size:22px; font-weight:bold;}
+.post .content h2 {font-size:20px; font-weight:bold;}
+.post .content h3 {font-size:18px; font-weight:bold;}
+.post .content h4 {font-size:16px; font-weight:bold;}
+.post .content h5 {font-size:13px; font-weight:bold;}
+.post .content h6 {font-size:12px; font-weight:bold;}
+.post .content p {}
+.post .content ul {list-style: decimal outside none; padding-left:20px;} 
+.post .content ol {list-style: disc outside none; padding-left:20px;}
+.post .content li {}
+.post .content p {}
+.post .content p {}
+.post .content em, .post .content strong {font-weight: bold;}
+.post .content code {
+    background-color: #F8F8F8;
+    border: 1px solid #EAEAEA;
+    border-radius: 3px 3px 3px 3px;
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+
 
 /* ...... */
 a.lbt {

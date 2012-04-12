@@ -5,10 +5,13 @@ block content
   - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
   article
     aside 
-      span= fdate
+      p.date= fdate
+      p.tags
+        a #css #js #html
+      p.share twitter,facebook,douban
     .post
       h3= tit
-      .content= article 
+      .content!= article 
       
   section#comment
     ul

@@ -93,7 +93,7 @@ app.get('/admin/new', function(req, res){
 app.post('/admin/new', function(req, res){
 	articleProvider.save({
 		title: req.param('title'),
-		body: markdown.toHTML(req.param('body'))	
+		body: markdown.parse(req.param('body'))	
 	}, function(error, docs){
 		res.redirect('/admin/list');
 	});
