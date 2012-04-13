@@ -50,7 +50,7 @@ app.get('/post/:id', function(req, res){
 		res.render('default/single.jade', {locals: {
 		    _id: article._id,
 			tit: article.title,
-			article: article.body,
+			article: markdown.parse(article.body),
 			time: article.created_at,
 		    comments: article.comments
 		}})
@@ -85,16 +85,39 @@ app.get('/admin/list', function(req, res){
 });
 
 app.get('/admin/new', function(req, res){
-	res.render('admin/new.jade', {
-		title: '撰写文章'
+	res.render('admin/editer.jade', {
+		title: '撰写文章',
+		post_tit:  '',
+		post_body: '',
+		post_tags: ''
 	});
 });
 
 app.post('/admin/new', function(req, res){
 	articleProvider.save({
 		title: req.param('title'),
-		body: markdown.parse(req.param('body'))	
+		body: req.param('body'),
+		tags: req.param('tags'),
 	}, function(error, docs){
+		res.redirect('/admin/list');
+	});
+});
+
+app.get('/admin/edit/:id', function(req, res){
+	var id = req.params.id;
+	articleProvider.edit(id, function(error, article){
+		res.render('admin/editer.jade', {
+			title: '撰写文章',
+			post_tit:  'old tit',
+			post_body: '## 这里是内容',
+			post_tags: 'tags, tags'
+		});
+	});
+});
+
+app.get('/admin/del/:id', function(req, res){
+	var id = req.params.id;
+	articleProvider.del(id, function(error, article){
 		res.redirect('/admin/list');
 	});
 });

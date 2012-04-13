@@ -9,11 +9,10 @@ block main
         tr
           td
             a(href="/post/#{article._id}", target="_blank")= article.title
-          td
-            p.op
-              button.btn.btn-mini 编辑
-              button.btn.btn-mini 隐藏
-              button.btn.btn-mini.btn-danger 删除
+          td.op
+            button.btn.btn-mini 编辑
+            button.btn.btn-mini 隐藏
+            button.btn.btn-mini.btn-danger 删除
   - else
     p There is no blog!
 
