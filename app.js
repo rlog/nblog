@@ -75,7 +75,7 @@ app.get('/admin', function(req, res){
 	});
 });
 
-app.get('/admin/list', function(req, res){
+app.get('/admin/post/list', function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('admin/list.jade', {
 			title: '文章列表',
@@ -84,7 +84,7 @@ app.get('/admin/list', function(req, res){
 	});
 });
 
-app.get('/admin/new', function(req, res){
+app.get('/admin/post/new', function(req, res){
 	res.render('admin/editer.jade', {
 		title: '撰写文章',
 		post_tit:  '',
@@ -93,7 +93,7 @@ app.get('/admin/new', function(req, res){
 	});
 });
 
-app.post('/admin/new', function(req, res){
+app.post('/admin/post/new', function(req, res){
 	articleProvider.save({
 		title: req.param('title'),
 		body: req.param('body'),
@@ -103,7 +103,7 @@ app.post('/admin/new', function(req, res){
 	});
 });
 
-app.get('/admin/edit/:id', function(req, res){
+app.get('/admin/post/edit/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.edit(id, function(error, article){
 		res.render('admin/editer.jade', {
@@ -115,7 +115,7 @@ app.get('/admin/edit/:id', function(req, res){
 	});
 });
 
-app.get('/admin/del/:id', function(req, res){
+app.get('/admin/post/del/:id', function(req, res){
 	var id = req.params.id;
 	articleProvider.del(id, function(error, article){
 		res.redirect('/admin/list');
