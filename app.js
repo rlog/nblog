@@ -9,7 +9,7 @@ var express = require('express')
 
 var app = module.exports = express.createServer();
 
-/**
+/*
  * Configuration
  */
 app.configure(function(){
@@ -87,38 +87,57 @@ app.get('/admin/post/list', function(req, res){
 app.get('/admin/post/new', function(req, res){
 	res.render('admin/editer.jade', {
 		title: '撰写文章',
+	    post_id :  '', 
 		post_tit:  '',
 		post_body: '',
-		post_tags: ''
-	});
-});
-
-app.post('/admin/post/new', function(req, res){
-	articleProvider.save({
-		title: req.param('title'),
-		body: req.param('body'),
-		tags: req.param('tags'),
-	}, function(error, docs){
-		res.redirect('/admin/list');
+		post_tags: '',
+		post_action: "addNew"
 	});
 });
 
 app.get('/admin/post/edit/:id', function(req, res){
 	var id = req.params.id;
-	articleProvider.edit(id, function(error, article){
-		res.render('admin/editer.jade', {
-			title: '撰写文章',
-			post_tit:  'old tit',
-			post_body: '## 这里是内容',
-			post_tags: 'tags, tags'
-		});
+	articleProvider.findById(id, function(error, article){
+		res.render('admin/editer.jade', {locals: {
+		    title: '编辑文章',
+		    post_id : article._id, 
+			post_tit:  article.title,
+			post_body: article.body,
+			post_tags: article.tags,
+			post_action: "editOld"
+		}})
 	});
 });
 
+app.post('/admin/post/editer', function(req, res){
+	var post_act = req.body.action;
+	if (post_act === "addNew"){
+		articleProvider.save({
+			title: req.param('title'),
+			body: req.param('body'),
+			tags: req.param('tags'),
+		}, function(error, docs){
+			res.redirect('/admin/post/list');
+		});
+	} else if (post_act === "editOld"){
+		articleProvider.update({
+			id: req.param('id'),
+			title: req.param('title'),
+			body: req.param('body'),
+			tags: req.param('tags'),
+		}, function(error){
+			res.redirect('/admin/post/list');
+		});
+	} else {
+		console.log(post_act);
+	}
+});
+
+
 app.get('/admin/post/del/:id', function(req, res){
 	var id = req.params.id;
-	articleProvider.del(id, function(error, article){
-		res.redirect('/admin/list');
+	articleProvider.del(id, function(error){
+		res.redirect('/admin/post/list');
 	});
 });
 

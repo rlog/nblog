@@ -4,14 +4,18 @@ block main
   - if (articles.length)
     table.table
       - each article in articles
-        - var pdate = new Date(article.created_at); 
-        - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
         tr
+          td.date(width="120")= article.formatDate
+          td.comment-count(width="10") 
+            a.label.label-success(href="/admin/comment/list/#{article._id}", title="评论管理") 
+              =article.comments.length
           td
             a(href="/post/#{article._id}", target="_blank")= article.title
-          td.op
-            a.btn.btn-mini(href="/admin/post/edit/#{article._id}") 编辑
+          td.op(width="140")
+            a.btn.btn-mini(href="/admin/post/edit/#{article._id}") 编辑 
+            &nbsp;
             a.btn.btn-mini(href="/admin/post/hide/#{article._id}") 隐藏
+            &nbsp;
             a.btn.btn-mini.btn-danger(href="/admin/post/del/#{article._id}") 删除
   - else
     p There is no blog!

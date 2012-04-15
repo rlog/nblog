@@ -4,6 +4,38 @@ var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
+function zeroFill (s, n) {
+    var zero = '';
+    for (var i = 0; i < n; i++) {
+        zero += '0';
+    } 
+    return (zero + s).slice(-n);
+}
+// rfc3339
+function formatDate (d, type) {
+    var date = new Date(d),
+
+        year = date.getFullYear(),
+        month = zeroFill((date.getMonth() + 1), 2),
+        day = zeroFill(date.getDate(), 2),
+        hours = zeroFill(date.getHours(), 2),
+        minutes = zeroFill(date.getMinutes(), 2),
+        seconds = zeroFill(date.getSeconds(), 2),
+
+        offset = date.getTimezoneOffset(),
+        offsetSign = offset > 0 ? '-' : '+',
+        offsetHours = zeroFill(Math.floor(Math.abs(offset) / 60), 2),
+        offsetMinutes = zeroFill(Math.abs(offset) % 60, 2);
+
+    if (type === 'rfc3339') {
+        return year + '-' + month + '-' + day + 'T' + hours + ':' +
+            minutes + ':' + seconds + offsetSign + offsetHours + ':' + offsetMinutes;
+    } else {
+        return year + '-' + month + '-' + day + ' ' + hours + ':' +
+            minutes + ':' + seconds;
+    }
+}
+
 ArticleProvider = function(host, port){
 	this.db = new Db('blog', new Server(host, port, {auto_reconnect: true}, {}));
 	this.db.open(function(error){
@@ -69,6 +101,7 @@ ArticleProvider.prototype.save = function(articles, callback){
 		for(var i=0; i<articles.length; i++){
 			article = articles[i];
 			article.created_at = new Date();
+			article.formatDate = formatDate(new Date());
 
 			if(article.comments === undefined){
 				article.comments = [];
@@ -83,6 +116,47 @@ ArticleProvider.prototype.save = function(articles, callback){
 			callback(null, articles);
 		});
 	}
+	});
+};
+
+ArticleProvider.prototype.update = function(articles, callback){
+	this.getCollection(function(error, article_collection){
+		if(error){
+			callback(error);
+		} else {
+			var articleId = articles.id;
+			article_collection.update(
+				{_id: article_collection.db.bson_serializer.ObjectID.createFromHexString(articleId)}, 
+				{$set: {
+					title: articles.title,
+					body: articles.body,
+					tags: articles.tags
+				}}, 
+				function(error){
+					if(error){
+					  callback(error);
+					} else {
+						callback(null);
+					}
+				}
+			);
+		}
+	});
+};
+
+ArticleProvider.prototype.del = function(articleId, callback){
+	this.getCollection(function(error, article_collection){
+		if(error){
+			callback(error);
+		} else {
+			article_collection.remove({_id: article_collection.db.bson_serializer.ObjectID.createFromHexString(articleId)}, function(error){
+				if(error){
+				  callback(error);
+				} else {
+					callback(null);
+				}
+			});
+		}
 	});
 };
 

@@ -1,20 +1,22 @@
 extends ./base
 
 block main
-  form.form-horizontal#new-post(method='post', action="/admin/new")
+  form.form-horizontal#new-post(method='post', action="/admin/post/editer")
     fieldset
       .control-group
         label.control-label 标题：
         .controls
-          input(name='title', type="text")
+          input(name='title', type="text", value="#{post_tit}")
       .control-group
         label.control-label 内容：
         .controls
-          textarea(name='body')
+          textarea(name='body')= post_body
       .control-group
         label.control-label 标签：
         .controls
-          input(name='tags', type="text")
+          input(name='tags', type="text", value="#{post_tags}") 
+      input(name="action", type="hidden", value="#{post_action}")
+      input(name="id", type="hidden", value="#{post_id}")
 
 block bar
   .well

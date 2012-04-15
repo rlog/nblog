@@ -21,7 +21,7 @@ block content
           p= comment.comment
 
     div
-      form(method="post", action="/addComment")
+      form(method="post", action="/post/addComment")
         input(type="hidden", name="_id", value=_id)
         p Author:
           input(type="text", name="person")
