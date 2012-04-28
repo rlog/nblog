@@ -4,8 +4,7 @@
 
 var express = require('express')
   , markdown = require('markdown')
-  , routes = require('./routes')
-  , ArticleProvider = require('./Articleprovider').ArticleProvider;
+  , routes = require('./routes');
 
 var app = module.exports = express.createServer();
 
@@ -22,6 +21,12 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
+app.helpers({
+  md: function (str){
+        return markdown.parse(str);
+      }
+});
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
@@ -30,124 +35,50 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-var articleProvider = new ArticleProvider('localhost', 27017);
 
 /**
  * Routes
  */
 
 app.get('/', function(req, res){
-	articleProvider.findAll(function(error, docs){
-		res.render('default/index.jade', {
-			articles: docs
-		});
-	});
+  routes.index(req, res);
 });
 
 app.get('/post/:id', function(req, res){
-	var id = req.params.id;
-	articleProvider.findById(id, function(error, article){
-		res.render('default/single.jade', {locals: {
-		    _id: article._id,
-			tit: article.title,
-			article: markdown.parse(article.body),
-			time: article.created_at,
-		    comments: article.comments
-		}})
-	});
+  routes.single(req, res);
 });
 
 app.post('/post/addComment', function(req, res){
-	articleProvider.addComment(req.param('_id'), {
-		person: req.param('person'),
-		comment: req.param('comment'),
-    created_at: new Date()
-	}, function(error, docs){
-		res.redirect('/post/' + req.param('_id'))
-	});
+  routes.addComment(req, res);
 });
 
 app.get('/admin', function(req, res){
-	articleProvider.findAll(function(error, docs){
-		res.render('admin/index.jade', {
-			title: '管理首页'
-		});
-	});
+  routes.admin(req, res);
 });
 
 app.get('/admin/post/list', function(req, res){
-	articleProvider.findAll(function(error, docs){
-		res.render('admin/list.jade', {
-			title: '文章列表',
-			articles: docs
-		});
-	});
+  routes.admin_post_list(req, res);
 });
 
 app.get('/admin/post/new', function(req, res){
-	res.render('admin/editer.jade', {
-		title: '撰写文章',
-	    post_id :  '', 
-		post_tit:  '',
-		post_body: '',
-		post_tags: '',
-		post_action: "addNew"
-	});
+  routes.admin_post_new(req, res);
 });
 
 app.get('/admin/post/edit/:id', function(req, res){
-	var id = req.params.id;
-	articleProvider.findById(id, function(error, article){
-		res.render('admin/editer.jade', {locals: {
-		    title: '编辑文章',
-		    post_id : article._id, 
-			post_tit:  article.title,
-			post_body: article.body,
-			post_tags: article.tags,
-			post_action: "editOld"
-		}})
-	});
+  routes.admin_post_editer(req, res);
 });
 
 app.post('/admin/post/editer', function(req, res){
-	var post_act = req.body.action;
-	if (post_act === "addNew"){
-		articleProvider.save({
-			title: req.param('title'),
-			body: req.param('body'),
-			tags: req.param('tags'),
-		}, function(error, docs){
-			res.redirect('/admin/post/list');
-		});
-	} else if (post_act === "editOld"){
-		articleProvider.update({
-			id: req.param('id'),
-			title: req.param('title'),
-			body: req.param('body'),
-			tags: req.param('tags'),
-		}, function(error){
-			res.redirect('/admin/post/list');
-		});
-	} else {
-		console.log(post_act);
-	}
+  routes.admin_post_submit(req, res);
 });
 
 
 app.get('/admin/post/del/:id', function(req, res){
-	var id = req.params.id;
-	articleProvider.del(id, function(error){
-		res.redirect('/admin/post/list');
-	});
+  routes.admin_post_del(req, res);
 });
 
 app.get('/admin/help', function(req, res){
-	articleProvider.findAll(function(error, docs){
-		res.render('admin/help.jade', {
-			title: '帮助',
-			articles: docs
-		});
-	});
+  routes.admin_help(req, res);
 });
 
 app.listen(3000);
