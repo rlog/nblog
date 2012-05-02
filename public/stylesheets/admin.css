@@ -18,3 +18,7 @@ h2 {
 #new-post .controls textarea {
 	height:400px;
 }
+
+.table td.gray {
+  color:#aaa;
+}

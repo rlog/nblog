@@ -5,7 +5,7 @@ block main
     table.table
       - each article in articles
         tr
-          td.date(width="120")= article.formatDate
+          td.gray(width="130")= article.formatDate
           td.comment-count(width="10") 
             a.label.label-success(href="/admin/comment/list/#{article._id}", title="评论管理") 
               =article.comments.length

@@ -16,7 +16,7 @@ exports.single = function(req, res){
 		res.render('default/single.jade', {locals: {
       _id: article._id,
       tit: article.title,
-      article: markdown.parse(article.body),
+      article: article.body,
       time: article.created_at,
       comments: article.comments
 		}})

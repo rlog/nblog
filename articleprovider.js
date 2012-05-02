@@ -11,6 +11,12 @@ function zeroFill (s, n) {
     } 
     return (zero + s).slice(-n);
 }
+
+function convertMarkup (input) {
+    return input.
+        replace(/\r\n/gm, '\n').
+        replace(/\r/gm, '\n');
+}
 // rfc3339
 function formatDate (d, type) {
     var date = new Date(d),
@@ -36,7 +42,7 @@ function formatDate (d, type) {
     }
 }
 
-ArticleProvider = function(host, port){
+ArticleProvider = function (host, port) {
 	this.db = new Db('blog', new Server(host, port, {auto_reconnect: true}, {}));
 	this.db.open(function(error){
 		if(error){
@@ -99,10 +105,12 @@ ArticleProvider.prototype.save = function(articles, callback){
 		}
 
 		for(var i=0; i<articles.length; i++){
-			article = articles[i];
+      //article = convertMarkup(articles[i]);
+      article = articles[i];
 			article.created_at = new Date();
 			article.formatDate = formatDate(new Date());
-
+      
+      article.body = convertMarkup(article.body);
 			if(article.comments === undefined){
 				article.comments = [];
 			}
@@ -129,7 +137,7 @@ ArticleProvider.prototype.update = function(articles, callback){
 				{_id: article_collection.db.bson_serializer.ObjectID.createFromHexString(articleId)}, 
 				{$set: {
 					title: articles.title,
-					body: articles.body,
+					body: convertMarkup(articles.body),
 					tags: articles.tags
 				}}, 
 				function(error){

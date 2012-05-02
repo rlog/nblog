@@ -14,7 +14,7 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('view options', {'layout': false}); //不需要layout模版
+  app.set('view options', {'layout': false, 'pretty': true}); //不需要layout模版
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
@@ -23,7 +23,8 @@ app.configure(function(){
 
 app.helpers({
   md: function (str){
-        return markdown.parse(str);
+        var content = markdown.parse(str);
+        return content.replace(/<pre><code>([\w\W]*?)<\/code><\/pre>/g, '<pre class="prettyprint">$1</pre>');
       }
 });
 
