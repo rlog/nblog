@@ -7,19 +7,19 @@ block main
         tr
           td.gray(width="130")= article.formatDate
           td.comment-count(width="10") 
-            a.label.label-success(href="/admin/comment/list/#{article._id}", title="评论管理") 
+            a.label.label-success(href="/admin/comment/list/#{article._id}", title="admin comments") 
               =article.comments.length
           td
             a(href="/post/#{article._id}", target="_blank")= article.title
           td.op(width="140")
-            a.btn.btn-mini(href="/admin/post/edit/#{article._id}") 编辑 
+            a.btn.btn-mini(href="/admin/post/edit/#{article._id}") Edit
             &nbsp;
-            a.btn.btn-mini(href="/admin/post/hide/#{article._id}") 隐藏
+            a.btn.btn-mini(href="/admin/post/hide/#{article._id}") Hide 
             &nbsp;
-            a.btn.btn-mini.btn-danger(href="/admin/post/del/#{article._id}") 删除
+            a.btn.btn-mini.btn-danger(href="/admin/post/del/#{article._id}") DEL
   - else
     p There is no blog!
 
 block bar 
   p
-    a.btn.btn-large.btn-primary(href="/admin/post/new") 添加文章
+    a.btn.btn-large.btn-primary(href="/admin/post/new") NEW POST 

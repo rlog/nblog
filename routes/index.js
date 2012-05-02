@@ -35,14 +35,14 @@ exports.addComment = function(req, res){
 
 exports.admin = function(req, res){
   res.render('admin/index.jade', {
-    title: '管理首页'
+    title: 'Dashboard'
   });
 };
 
 exports.admin_post_list = function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('admin/list.jade', {
-			title: '文章列表',
+			title: 'Posts List',
 			articles: docs
 		});
 	});
@@ -50,7 +50,7 @@ exports.admin_post_list = function(req, res){
 
 exports.admin_post_new = function(req, res){
 	res.render('admin/editer.jade', {
-		title: '撰写文章',
+		title: 'New Post',
     post_id :  '', 
 		post_tit:  '',
 		post_body: '',
@@ -63,7 +63,7 @@ exports.admin_post_editer = function(req, res){
 	var id = req.params.id;
 	articleProvider.findById(id, function(error, article){
 		res.render('admin/editer.jade', {locals: {
-      title: '编辑文章',
+      title: 'Edit Post',
       post_id : article._id, 
 			post_tit:  article.title,
 			post_body: article.body,
@@ -106,6 +106,6 @@ exports.admin_post_del = function(req, res){
 
 exports.admin_help = function(req, res){
   res.render('admin/help.jade', {
-    title: '帮助'
+    title: 'Help'
   });
 };

@@ -144,12 +144,9 @@ article .post .content{
 .post .content h4 {font-size:16px; font-weight:bold; margin: 20px 0 10px;}
 .post .content h5 {font-size:13px; font-weight:bold; margin: 20px 0 10px;}
 .post .content h6 {font-size:12px; font-weight:bold; margin: 20px 0 10px;}
-.post .content p {margin: 10px 0px;}
+.post .content p {margin-bottom: 15px;}
 .post .content ul {list-style: decimal outside none; padding-left:30px;} 
 .post .content ol {list-style: disc outside none; padding-left:30px;}
-.post .content li {}
-.post .content p {}
-.post .content p {}
 .post .content em, .post .content strong {font-weight: bold;}
 .post .content code {
     background-color: #F8F8F8;
@@ -168,6 +165,16 @@ article .post .content{
     overflow: auto;
     padding: 6px 10px;
 }
+
+#comment {padding-left:202px;}
+#comment h3 {font-size:24px; margin:20px 0;}
+#comment .comment {margin-bottom:20px;}
+#comment .comment img {float:left; margin-right:10px;}
+#comment .comment div {overflow:hidden; zoom:1;}
+#comment .comment div p {line-height:1.3em; margin-top:8px;}
+#comment .new {}
+#comment .new p {margin-bottom: 10px;}
+#comment .new p label {display:block;}
 
 
 /* ...... */
@@ -226,8 +233,4 @@ a.lbt:hover {
     -webkit-box-shadow: 0 1px 2px #145fb5 inset;
     -o-box-shadow: 0 1px 2px #145fb5 inset;
     box-shadow: 0 1px 2px #589be7 inset;
-}
-
-#editArticleBody {
-  width:99%;
 }

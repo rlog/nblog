@@ -4,15 +4,15 @@ block main
   form.form-horizontal#new-post(method='post', action="/admin/post/editer")
     fieldset
       .control-group
-        label.control-label 标题：
+        label.control-label Title：
         .controls
           input(name='title', type="text", value="#{post_tit}")
       .control-group
-        label.control-label 内容：
+        label.control-label Content：
         .controls
           textarea(name='body')= post_body
       .control-group
-        label.control-label 标签：
+        label.control-label Tags：
         .controls
           input(name='tags', type="text", value="#{post_tags}") 
       input(name="action", type="hidden", value="#{post_action}")
@@ -21,7 +21,7 @@ block main
 block bar
   .well
     p
-      button.btn#post-save 草稿
-      button.btn#post-preview 预览
+      button.btn#post-save Draft 
+      button.btn#post-preview Preview 
     p
-      button.btn.btn-primary#post-publist 发布
+      button.btn.btn-primary#post-publist Publist 

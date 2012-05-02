@@ -14,18 +14,30 @@ block content
       .content!= md(article)
       
   section#comment
-    ul
-      - each comment in comments
-        li
-          span= comment.person
-          p= comment.comment
+    div.list
+      - if (comments.length) {
+          h3 Comments
+        - each comment in comments
+          div.comment 
+            img(src="http://img3.douban.com/icon/u1794939-2.jpg")
+            div
+              span= comment.person
+              span.date= comment.date
+              p= comment.comment
+      - }
 
-    div
+    div.new
+      h3 Add New Comment
       form(method="post", action="/post/addComment")
         input(type="hidden", name="_id", value=_id)
-        p Author:
-          input(type="text", name="person")
-        p Comment:
-          textarea(name="comment", rows="3")
+        p 
+          label(for="cmt_name") Name:
+          input(type="text", id="cmt_name", name="person")
+        p 
+          label(for="cmt_email") Email:
+          input(type="text", id="cmt_email", name="email")
+        p 
+          label(for="cmt_comment") Comment:
+          textarea(name="comment", id="cmt_comment", rows="3")
         p
           input.bt(type="submit", value="Send")
