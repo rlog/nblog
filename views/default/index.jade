@@ -3,11 +3,9 @@ extends base
 block content 
   - if (articles.length)
       - each article in articles
-        - var pdate = new Date(article.created_at); 
-        - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
         article
           aside 
-            p.date= fdate
+            p.date= article.formatDate 
             p.tags
               a #css #js #html
             p.share twitter,facebook,douban

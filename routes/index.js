@@ -17,7 +17,7 @@ exports.single = function(req, res){
       _id: article._id,
       tit: article.title,
       article: article.body,
-      time: article.created_at,
+      formatDate: article.formatDate,
       comments: article.comments
 		}})
 	});
@@ -26,6 +26,7 @@ exports.single = function(req, res){
 exports.addComment = function(req, res){
 	articleProvider.addComment(req.param('_id'), {
 		person: req.param('person'),
+		site: req.param('site'),
 		comment: req.param('comment'),
     created_at: new Date()
 	}, function(error, docs){

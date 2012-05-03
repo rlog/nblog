@@ -1,11 +1,9 @@
 extends base
 
 block content
-  - var pdate = new Date(time); 
-  - var fdate = pdate.getYear() +'-'+ pdate.getMonth() +'-'+ pdate.getDate();
   article
     aside 
-      p.date= fdate
+      p.date= formatDate 
       p.tags
         a #css #js #html
       p.share twitter,facebook,douban
@@ -21,8 +19,12 @@ block content
           div.comment 
             img(src="http://img3.douban.com/icon/u1794939-2.jpg")
             div
-              span= comment.person
-              span.date= comment.date
+              - if (comment.site) {
+                a(href="#{comment.site}")= comment.person
+              - } else {
+                span= comment.person
+              - }
+              span.date= comment.formatDate
               p= comment.comment
       - }
 
@@ -32,10 +34,13 @@ block content
         input(type="hidden", name="_id", value=_id)
         p 
           label(for="cmt_name") Name:
-          input(type="text", id="cmt_name", name="person")
+          input.txt(type="text", id="cmt_name", name="person")
+        p 
+          label(for="cmt_site") Site:
+          input.txt(type="text", id="cmt_site", name="site")
         p 
           label(for="cmt_email") Email:
-          input(type="text", id="cmt_email", name="email")
+          input.txt(type="text", id="cmt_email", name="email")
         p 
           label(for="cmt_comment") Comment:
           textarea(name="comment", id="cmt_comment", rows="3")

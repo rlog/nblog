@@ -14,7 +14,7 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('view options', {'layout': false, 'pretty': true}); //不需要layout模版
+  app.set('view options', {'layout': false, 'pretty': false}); //不需要layout模版
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);

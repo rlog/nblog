@@ -105,7 +105,6 @@ ArticleProvider.prototype.save = function(articles, callback){
 		}
 
 		for(var i=0; i<articles.length; i++){
-      //article = convertMarkup(articles[i]);
       article = articles[i];
 			article.created_at = new Date();
 			article.formatDate = formatDate(new Date());
@@ -117,6 +116,7 @@ ArticleProvider.prototype.save = function(articles, callback){
 
 			for (var j=0; j<article.comments.length; j++){
 				article.comments[j].created_at = new Date();
+				article.comments[j].formatDate = formatDate(new Date());
 			}
 		}
 
@@ -169,6 +169,7 @@ ArticleProvider.prototype.del = function(articleId, callback){
 };
 
 ArticleProvider.prototype.addComment= function(articleId, comment, callback){
+  comment.formatDate = formatDate(comment.created_at);
 	this.getCollection(function(error, article_collection){
     if(error){
       callback(error);
