@@ -1,0 +1,42 @@
+extends ./base
+
+block main
+  form.form-horizontal#blog-setting(method='post', action="/admin/setting")
+    fieldset
+      .control-group
+        label.control-label 网站标题：
+        .controls
+          input(name='site_title', type="text", value="", placeholder="")
+      .control-group
+        label.control-label 网站描述： 
+        .controls
+          input(name='site_desc', type="text", value="", placeholder="")
+      .control-group
+        label.control-label 网站地址：
+        .controls
+          input(name='site_url', type="text", value="", placeholder="")
+      .control-group
+        label.control-label 网站作者： 
+        .controls
+          input(name='auth_name', type="text", value="", placeholder="")
+      .control-group
+        label.control-label 后台帐号： 
+        .controls
+          input(name='admin_user', type="text", value="", placeholder="")
+      .control-group
+        label.control-label 后台密码：
+        .controls
+          input(name='admin_pwd', type="password", value="", placeholder="")
+      .control-group
+        label.control-label 确认密码：
+        .controls
+          input(name='admin_pwd_re', type="password", value="", placeholder="")
+      .control-group
+        label.control-label 评论代码： 
+        .controls
+          textarea()
+
+      .form-actions
+        button.btn.btn-primary#setting-save Save 
+        &nbsp;
+        button.btn#setting-def Def 

@@ -5,11 +5,19 @@ body {
 h2 {
 	margin-bottom:30px;
 }
+#blog-setting .control-label,
 #new-post .control-label {
-	width:50px;
+	width:90px;
 }
-#new-post .controls {
-	margin-left:60px;
+
+#blog-setting .controls,
+#new-post .controls{
+	margin-left:100px;
+}
+
+#blog-setting .form-actions,
+#new-post .form-actions{
+  padding-left:100px;
 }
 #new-post .controls input ,
 #new-post .controls textarea {
@@ -17,8 +25,20 @@ h2 {
 }
 #new-post .controls textarea {
 	height:400px;
+  resize: vertical;
 }
 
 .table td.gray {
   color:#aaa;
+}
+
+.lab_list {
+  margin-top:5px;
+}
+.lab_list a {
+  margin-right:5px;
+}
+
+.label {
+  padding:2px 4px;
 }

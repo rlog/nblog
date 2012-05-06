@@ -30,7 +30,7 @@ exports.addComment = function(req, res){
 		comment: req.param('comment'),
     created_at: new Date()
 	}, function(error, docs){
-		res.redirect('/post/' + req.param('_id'))
+		res.redirect('/post/' + req.param('_id') + "#comment")
 	});
 };
 
@@ -108,5 +108,11 @@ exports.admin_post_del = function(req, res){
 exports.admin_help = function(req, res){
   res.render('admin/help.jade', {
     title: 'Help'
+  });
+};
+
+exports.admin_setting = function(req, res){
+  res.render('admin/setting.jade', {
+    title: 'Setting'
   });
 };

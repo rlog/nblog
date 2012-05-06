@@ -14,19 +14,19 @@ html
               li
                 a(href="/admin/post/list") List
               li
-                a(href="/admin/post/new") New Post 
+                a(href="/admin/post/new") New Post
               li
-                a(href="/admin/help") Help 
+                a(href="/admin/setting") Setting 
+              li
+                a(href="/admin/help") Help
             p.navbar-text.pull-right
-              a(href="/") BLOG 
+              a(href="/") BLOG
 
     .container
-      h2= title 
+      h2= title
       .row
-        .span10
+        .span12
           block main
-        .span2
-          block bar
 
     script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
     script(type='text/javascript', src='/javascripts/admin.js')
