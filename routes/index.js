@@ -4,10 +4,23 @@ var ArticleProvider = require('./../Articleprovider').ArticleProvider,
 
 exports.index = function(req, res){
 	articleProvider.findAll(function(error, docs){
-		res.render('default/index.jade', {
+		res.render('default/list.jade', {
 			articles: docs
 		});
 	});
+};
+
+exports.tag = function(req, res){
+	var tag = req.params.tag;
+  if (tag){
+    articleProvider.findByTag(tag, function(error, articles){
+      res.render('default/list.jade', {
+        articles: articles 
+      });
+    });
+  } else {
+    res.render('default/tags.jade');
+  }
 };
 
 exports.single = function(req, res){
@@ -17,6 +30,7 @@ exports.single = function(req, res){
       _id: article._id,
       tit: article.title,
       article: article.body,
+      tags: article.tags,
       formatDate: article.formatDate,
       comments: article.comments
 		}})
@@ -74,13 +88,18 @@ exports.admin_post_editer = function(req, res){
 	});
 };
 
-exports.admin_post_submit = function(req, res){
+exports.admin_post_save = function(req, res){
 	var post_act = req.body.action;
+  var tags_str = req.param('tags');
+  if (tags_str.substr(-1,1) === ",") {
+    tags_str = tags_str.substr(0, tags_str.length-1);
+  }
+  var tags_arr = tags_str.split(",");
 	if (post_act === "addNew"){
 		articleProvider.save({
 			title: req.param('title'),
 			body: req.param('body'),
-			tags: req.param('tags'),
+			tags: tags_arr
 		}, function(error, docs){
 			res.redirect('/admin/post/list');
 		});
@@ -89,7 +108,7 @@ exports.admin_post_submit = function(req, res){
 			id: req.param('id'),
 			title: req.param('title'),
 			body: req.param('body'),
-			tags: req.param('tags'),
+			tags: tags_arr 
 		}, function(error){
 			res.redirect('/admin/post/list');
 		});

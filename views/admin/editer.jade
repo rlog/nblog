@@ -10,6 +10,13 @@ block main
       .control-group
         label.control-label Content：
         .controls
+          .btn-toolbar#edit_bar
+            .btn-group
+              button.btn(title="Upload Img")
+                i.icon-picture
+              button.btn(title="Code")
+                i.icon-leaf
+        .controls
           textarea(name='body')= post_body
       .control-group
         label.control-label Tags：

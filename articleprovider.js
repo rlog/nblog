@@ -20,7 +20,6 @@ function convertMarkup (input) {
 // rfc3339
 function formatDate (d, type) {
     var date = new Date(d),
-
         year = date.getFullYear(),
         month = zeroFill((date.getMonth() + 1), 2),
         day = zeroFill(date.getDate(), 2),
@@ -89,6 +88,24 @@ ArticleProvider.prototype.findById = function(id, callback){
 					callback(error);
 				} else {
 					callback(null, result);
+				}
+			});
+		}
+	});
+};
+
+ArticleProvider.prototype.findByTag = function(tag, callback){
+  console.log(tag);
+	this.getCollection(function(error, article_collection){
+		if(error){
+			callback(error);
+		} else {
+			article_collection.find({tags:tag}, function(error, results){
+				if(error){
+					callback(error);
+				} else {
+          console.log(results);
+					callback(null, results);
 				}
 			});
 		}

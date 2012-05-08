@@ -49,6 +49,10 @@ app.get('/post/:id', function(req, res){
   routes.single(req, res);
 });
 
+app.get('/tag/:tag', function(req, res){
+  routes.tag(req, res);
+});
+
 app.post('/post/addComment', function(req, res){
   routes.addComment(req, res);
 });
@@ -70,7 +74,7 @@ app.get('/admin/post/edit/:id', function(req, res){
 });
 
 app.post('/admin/post/editer', function(req, res){
-  routes.admin_post_submit(req, res);
+  routes.admin_post_save(req, res);
 });
 
 
