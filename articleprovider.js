@@ -95,16 +95,14 @@ ArticleProvider.prototype.findById = function(id, callback){
 };
 
 ArticleProvider.prototype.findByTag = function(tag, callback){
-  console.log(tag);
 	this.getCollection(function(error, article_collection){
 		if(error){
 			callback(error);
 		} else {
-			article_collection.find({tags:tag}, function(error, results){
+			article_collection.find({tags:tag}).toArray(function(error, results){
 				if(error){
 					callback(error);
 				} else {
-          console.log(results);
 					callback(null, results);
 				}
 			});

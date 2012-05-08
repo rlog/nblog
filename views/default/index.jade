@@ -1,7 +1,7 @@
 extends base
 
 block content 
-  - if (articles.length)
+  - if (typeof(articles) === "Array")
       - each article in articles
         article
           aside 
@@ -15,4 +15,3 @@ block content
             .content!= md(article.body)
   - else
     p There is no blog, please 
-      a(href="new") ADD 

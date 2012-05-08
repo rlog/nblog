@@ -1,18 +1,22 @@
 extends base
 
 block content 
-  - if (articles.length)
+  - if (tag_name)
+    h2.big_tit All articles containing tag:  
+      strong #{tag_name}
+  - if (articles)
       - each article in articles
         article
           aside 
             p.date= article.formatDate 
             p.tags
-              a #css #js #html
+              - each tag in article.tags
+                - var a_tag = "#" + tag + "&nbsp;";
+                a(href="/tag/#{tag}")= a_tag 
             p.share twitter,facebook,douban
           .post
             h3
-              a(href="post/#{article._id}")= article.title
+              a(href="/post/#{article._id}")= article.title
             .content!= md(article.body)
   - else
     p There is no blog, please 
-      a(href="new") ADD 

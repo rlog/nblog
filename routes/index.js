@@ -5,6 +5,7 @@ var ArticleProvider = require('./../Articleprovider').ArticleProvider,
 exports.index = function(req, res){
 	articleProvider.findAll(function(error, docs){
 		res.render('default/list.jade', {
+      tag_name: '',
 			articles: docs
 		});
 	});
@@ -13,14 +14,17 @@ exports.index = function(req, res){
 exports.tag = function(req, res){
 	var tag = req.params.tag;
   if (tag){
-    articleProvider.findByTag(tag, function(error, articles){
+    articleProvider.findByTag(tag, function(error, docs){
       res.render('default/list.jade', {
-        articles: articles 
+        tag_name: tag,
+        articles: docs
       });
     });
-  } else {
-    res.render('default/tags.jade');
   }
+};
+
+exports.tags = function(req, res){
+  res.render('default/tags.jade');
 };
 
 exports.single = function(req, res){

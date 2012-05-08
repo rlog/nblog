@@ -98,6 +98,14 @@ footer {
   background:#333;
 }
 
+h2.big_tit {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+h2.big_tit strong{
+  font-weight: bold;
+  color:#06c;
+}
 /* mod */
 article { 
   zoom:1;

@@ -53,6 +53,10 @@ app.get('/tag/:tag', function(req, res){
   routes.tag(req, res);
 });
 
+app.get('/tags', function(req, res){
+  routes.tags(req, res);
+});
+
 app.post('/post/addComment', function(req, res){
   routes.addComment(req, res);
 });

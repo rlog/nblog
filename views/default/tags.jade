@@ -1,9 +1,4 @@
 extends base
 
 block content 
-  - if (tags.length)
-    .tag_cloud
-      - each tag in tags 
-        a(href="/tag/#{tag}")= tag
-  - else
-    p There is no tag
+  h2 tags
