@@ -4,6 +4,7 @@
 
 var express = require('express')
   , markdown = require('markdown')
+  , fs = require('fs')
   , routes = require('./routes');
 
 var app = module.exports = express.createServer();
@@ -15,7 +16,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set('view options', {'layout': false, 'pretty': false}); //不需要layout模版
-  app.use(express.bodyParser());
+  app.use(express.bodyParser({uploadDir:'/public/uploads'}));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -49,6 +50,10 @@ app.get('/post/:id', function(req, res){
   routes.single(req, res);
 });
 
+app.post('/post/addComment', function(req, res){
+  routes.addComment(req, res);
+});
+
 app.get('/tag/:tag', function(req, res){
   routes.tag(req, res);
 });
@@ -57,12 +62,26 @@ app.get('/tags', function(req, res){
   routes.tags(req, res);
 });
 
-app.post('/post/addComment', function(req, res){
-  routes.addComment(req, res);
-});
-
 app.get('/admin', function(req, res){
   routes.admin(req, res);
+});
+
+app.post('/admin/fileupload', function(req, res){
+  console.log(req.body);
+  console.log(req.files);
+
+  console.log(req.files.thumbnail.path);
+
+  var tmp_path = req.files.thumbnail.path;
+  var target_path = '/public/uploads/' + req.files.thumbnail.name; 
+
+  fs.rename(tmp_path, target_path, function(err){
+    if (err) throw err;
+    fs.unlink(tmp_path, function (err) {
+      if (err) throw err;
+      res.send({'r': 'success'});
+    })
+  });
 });
 
 app.get('/admin/post/list', function(req, res){

@@ -1,37 +1,35 @@
 extends ./base
 
 block main
-  form.form-horizontal#new-post(method='post', action="/admin/post/editer")
-    fieldset
-      .control-group
-        label.control-label Title：
-        .controls
-          input(name='title', type="text", value="#{post_tit}")
-      .control-group
-        label.control-label Content：
-        .controls
-          .btn-toolbar#edit_bar
-            .btn-group
-              button.btn(title="Upload Img")
-                i.icon-picture
-              button.btn(title="Code")
-                i.icon-leaf
-        .controls
-          textarea(name='body')= post_body
-      .control-group
-        label.control-label Tags：
-        .controls
-          input(name='tags', type="text", value="#{post_tags}") 
-        .controls.lab_list
-          a.label.label-success Info
-          a.label.label-success Info
-          a.label.label-success 中文标签 
-          a.label.label-success Info
-      input(name="action", type="hidden", value="#{post_action}")
-      input(name="id", type="hidden", value="#{post_id}")
-      .form-actions
-        button.btn.btn-primary#post-publist Publist 
-        &nbsp;
-        button.btn#post-preview Preview 
-        &nbsp;
-        button.btn#post-save Draft 
+  .row
+    .span10
+      form.form-horizontal#new-post(method='post', action="/admin/post/editer")
+        fieldset
+          .control-group
+            label.control-label Title：
+            .controls
+              input(name='title', type="text", value="#{post_tit}")
+          .control-group
+            label.control-label Content：
+            .controls
+              textarea(name='body')= post_body
+          .control-group
+            label.control-label Tags：
+            .controls
+              input(name='tags', type="text", value="#{post_tags}") 
+            //.controls.lab_list
+                a.label.label-success Info
+          input(name="action", type="hidden", value="#{post_action}")
+          input(name="id", type="hidden", value="#{post_id}")
+          .form-actions
+            button.btn.btn-primary#post-publist Publist 
+            &nbsp;
+            button.btn#post-preview Preview 
+            &nbsp;
+            button.btn#post-save Draft 
+    .span2
+      form#fileupload(method="post", enctype="multipart/form-data", action="/admin/fileupload")
+        input#newfile(type="file", name="thumbnail")
+        input.btn#upload(type="submit", value="Upload")
+
+      #file_list
