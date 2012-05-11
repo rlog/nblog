@@ -5,13 +5,11 @@ $(function(){
 	})
 
   //uploader
-  $("#fileupload").iframePostForm({
-    post: function(){},
-    complete: function (o) {
-        console.log(o);
-        var imgData = $.parseJSON($.browser.msie ? o : $(o).text());
-        //$("#file_list").append('<img src="' + imgData['src'].replace('public', '') + '" />');
+  $("#newfile").change(function(){
+    $(this).upload('/admin/fileupload', function(res) {
+        $(res).insertAfter(this);
+        console.log($(res));
         $("#file_list").append('<img src="http://img1.douban.com/lpic/s9014462.jpg" width="130" />');
-    }
+    }, 'json');
   })
 })

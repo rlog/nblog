@@ -72,16 +72,7 @@ app.post('/admin/fileupload', function(req, res){
 
   fs.rename(tmp_path, target_path, function(err){
     if (err) throw err;
-    res.send(JSON.stringify({
-      'r': 'success',
-      'uri' : '/uploads/' + req.files.thumbnail.name
-    }));
-    /*
-    fs.unlink(tmp_path, function (err) {
-      if (err) throw err;
-      res.send({'r': 'success'});
-    })
-    */
+    res.json({'r': 'success', 'uri': '/uploads/' + req.files.thumbnail.name});
   });
 });
 
@@ -115,4 +106,4 @@ app.get('/admin/setting', function(req, res){
 });
 
 app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
