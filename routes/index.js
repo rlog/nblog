@@ -68,28 +68,37 @@ exports.admin_post_list = function(req, res){
 };
 
 exports.admin_post_new = function(req, res){
-	res.render('admin/editer.jade', {
-		title: 'New Post',
-    post_id :  '', 
-		post_tit:  '',
-		post_body: '',
-		post_tags: '',
-		post_action: "addNew"
-	});
+	articleProvider.findAllTags(function(tags){
+    res.render('admin/editer.jade', {
+      title: 'New Post',
+      post_id :  '', 
+      post_tit:  '',
+      post_body: '',
+      post_tags: '',
+      post_action: "addNew",
+      all_tags: tags
+    });
+  })
 };
 
 exports.admin_post_editer = function(req, res){
 	var id = req.params.id;
-	articleProvider.findById(id, function(error, article){
-		res.render('admin/editer.jade', {locals: {
-      title: 'Edit Post',
-      post_id : article._id, 
-			post_tit:  article.title,
-			post_body: article.body,
-			post_tags: article.tags,
-			post_action: "editOld"
-		}})
-	});
+
+	articleProvider.findAllTags(function(tags){
+    articleProvider.findById(id, function(error, article){
+      res.render('admin/editer.jade', {locals: {
+        title: 'Edit Post',
+        post_id : article._id, 
+        post_tit:  article.title,
+        post_body: article.body,
+        post_tags: article.tags,
+        post_action: "editOld",
+        all_tags: tags
+      }})
+    });
+  });
+
+
 };
 
 exports.admin_post_save = function(req, res){

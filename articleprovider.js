@@ -3,6 +3,7 @@ var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
+var _ = require('underscore')._;
 
 function zeroFill (s, n) {
     var zero = '';
@@ -105,6 +106,23 @@ ArticleProvider.prototype.findByTag = function(tag, callback){
 				} else {
 					callback(null, results);
 				}
+			});
+		}
+	});
+};
+
+ArticleProvider.prototype.findAllTags = function(callback){
+	this.getCollection(function(error, article_collection){
+		if(error){
+			callback(error);
+		}else{
+			article_collection.find({},{"tags":1, "_id":0}).toArray(function(error, results){
+          var taglist = [], all = [];
+          _.each(results, function(tags){
+            taglist.push(tags.tags);
+          });
+          all = _.union(_.flatten(taglist));
+					callback(all);
 			});
 		}
 	});
