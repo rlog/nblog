@@ -67,7 +67,7 @@ ArticleProvider.prototype.findAll = function(callback) {
 		if(error){
 			callback(error);
 		}else{
-			article_collection.find().toArray(function(error, results){
+			article_collection.find().sort({"created_at": -1}).toArray(function(error, results){
 				if(error){
 					callback(error);
 				} else {
@@ -99,7 +99,7 @@ ArticleProvider.prototype.findByTag = function(tag, callback){
 		if(error){
 			callback(error);
 		} else {
-			article_collection.find({tags:tag}).toArray(function(error, results){
+			article_collection.find({tags:tag}).sort({"created_at": -1}).toArray(function(error, results){
 				if(error){
 					callback(error);
 				} else {

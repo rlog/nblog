@@ -1,1 +1,57 @@
-/* * jQuery.upload v1.0.2 * * Copyright (c) 2010 lagos * Dual licensed under the MIT and GPL licenses. * * http://lagoscript.org */ (function(b){function m(e){return b.map(n(e),function(d){return'<input type="hidden" name="'+d.name+'" value="'+d.value+'"/>'}).join("")}function n(e){function d(c,f){a.push({name:c,value:f})}if(b.isArray(e))return e;var a=[];if(typeof e==="object")b.each(e,function(c){b.isArray(this)?b.each(this,function(){d(c,this)}):d(c,b.isFunction(this)?this():this)});else typeof e==="string"&&b.each(e.split("&"),function(){var c=b.map(this.split("="),function(f){return decodeURIComponent(f.replace(/\+/g," "))}); d(c[0],c[1])});return a}function o(e,d){var a;a=b(e).contents().get(0);if(b.isXMLDoc(a)||a.XMLDocument)return a.XMLDocument||a;a=b(a).find("body").html();switch(d){case "xml":a=a;if(window.DOMParser)a=(new DOMParser).parseFromString(a,"application/xml");else{var c=new ActiveXObject("Microsoft.XMLDOM");c.async=false;c.loadXML(a);a=c}break;case "json":a=window.eval("("+a+")");break}return a}var p=0;b.fn.upload=function(e,d,a,c){var f=this,g,j,h;h="jquery_upload"+ ++p;var k=b('<iframe name="'+h+'" style="position:absolute;top:-9999px" />').appendTo("body"), i='<form target="'+h+'" method="post" enctype="multipart/form-data" />';if(b.isFunction(d)){c=a;a=d;d={}}j=b("input:checkbox",this);h=b("input:checked",this);i=f.wrapAll(i).parent("form").attr("action",e);j.removeAttr("checked");h.attr("checked",true);g=(g=m(d))?b(g).appendTo(i):null;i.submit(function(){k.load(function(){var l=o(this,c),q=b("input:checked",f);i.after(f).remove();j.removeAttr("checked");q.attr("checked",true);g&&g.remove();setTimeout(function(){k.remove();c==="script"&&b.globalEval(l); a&&a.call(f,l)},0)})}).submit();return this}})(jQuery);
+/*global jQuery */
+/*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, bitwise: true, regexp: true, newcap: true, strict: true */
+/**
+ * jQuery plugin for posting form including file inputs.
+ *
+ * Copyright (c) 2010 Ewen Elder
+ *
+ * Licensed under the MIT and GPL licenses:
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ * @author: Ewen Elder <glomainn at yahoo dot co dot uk> <ewen at jainaewen dot com>
+ * @version: 1.0 (2010-07-02)
+ **/
+ 
+(function ($) {
+    $.fn.iframePostForm = function (options) {
+        var contents, elements, element, iframe, n;
+ 
+        elements = $(this);
+        options = $.extend({}, $.fn.iframePostForm.defaults, options);
+ 
+        // Add the iframe.
+        if (!$('#' + options.iframeID).length) {
+            $('body').append('<iframe name="' + options.iframeID + '" id="' + options.iframeID + '" style="display:none"></iframe>');
+        }
+ 
+        return elements.each(function () {
+            element = $(this);
+ 
+            // Target the iframe.
+            element.attr('target', options.iframeID);
+ 
+            // Submit listener.
+            element.submit(function () {
+                options.post.apply(this);
+ 
+                n = $('#' + options.iframeID);
+                n[0].onload = function () {
+                    contents = n.contents().find('body');
+                    options.complete.apply(this, [contents.html()]);
+ 
+                    setTimeout(function () {
+                        //contents.html('');
+                    }, 1);
+                };
+            });
+        });
+    };
+ 
+    $.fn.iframePostForm.defaults = {
+        iframeID: 'iframe-post-form',
+        // IFrame ID.
+        post: function () {}, // Form onsubmit.
+        complete: function (response) {} // After everything is completed.
+    };
+})(jQuery);

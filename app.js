@@ -68,11 +68,23 @@ app.get('/admin', function(req, res){
 
 app.post('/admin/fileupload', function(req, res){
   var tmp_path = req.files.thumbnail.path;
-  var target_path = __dirname + '/public/uploads/' + req.files.thumbnail.name; 
+  var file_name = (req.files.thumbnail.name).replace(/\s+/g,"");
+  var date = new Date();
+  var date_name = date.getFullYear() + "" + (1+date.getMonth());
+  var date_path = "";
+  var target_path = __dirname + '/public/uploads/' + date_name + '_' + file_name; 
 
   fs.rename(tmp_path, target_path, function(err){
-    if (err) throw err;
-    res.json({'r': 'success', 'uri': '/uploads/' + req.files.thumbnail.name});
+    if (err) {
+      res.json({'r': 'error', 'msg': err});
+    } else {
+      res.json({
+        'r': 'success', 
+        'type': req.files.thumbnail.type, 
+        'name': req.files.thumbnail.name, 
+        'path': '/uploads/' + date_name + '_' + file_name 
+      });
+    };
   });
 });
 

@@ -28,6 +28,7 @@ block main
             &nbsp;
             button.btn#post-save Draft 
     .span2
-      input#newfile(type="file", name="thumbnail")
+      form(id='upload_form', method='post', action='/admin/fileupload', enctype='multipart/form-data')
+        input#newfile(type="file", name="thumbnail")
 
       #file_list
