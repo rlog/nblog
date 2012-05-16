@@ -154,6 +154,7 @@ article .post .content{
 .post .content h6 {font-size:12px; font-weight:bold; margin: 20px 0 10px;}
 .post .content p {margin-bottom: 20px;}
 .post .content p a {padding:0 2px;}
+.post .content img {max-width:770px; padding:2px; border:1px solid #ddd;}
 .post .content ul {list-style: decimal outside none; padding-left:30px;} 
 .post .content ol {list-style: disc outside none; padding-left:30px;}
 .post .content em, .post .content strong {font-weight: bold;}

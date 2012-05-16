@@ -53,4 +53,17 @@ $(function(){
     }
 });
 
+//select tag
+$(".lab_list").delegate("a", "click", function(){
+  var $this = $(this);
+  var $tag_input = $("#tag_input");
+  var $tag_input_val = $.trim($($tag_input).val());
+  if ($tag_input_val===""){
+    $tag_input.val($.trim($this.text()));
+  } else {
+    $tag_input.val($tag_input_val +","+ $.trim($this.text()));
+  }
+  return false;
+})
+
 })

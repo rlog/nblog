@@ -4,6 +4,7 @@
   , "private": true
   , "dependencies": {
       "express": "2.5.8"
+    , "underscore": ">= 0.0.1"
     , "sass": ">= 0.0.1"
     , "jade": ">= 0.0.1"
     , "markdown": ">=0.0.1"

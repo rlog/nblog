@@ -16,9 +16,11 @@ block main
           .control-group
             label.control-label Tags：
             .controls
-              input(name='tags', type="text", value="#{post_tags}") 
-            //.controls.lab_list
-                a.label.label-success Info
+              input#tag_input(name='tags', type="text", value="#{post_tags}") 
+          .controls.lab_list
+            - each tag in all_tags 
+              a.label.label-success(href="##{tag}")= tag 
+
           input(name="action", type="hidden", value="#{post_action}")
           input(name="id", type="hidden", value="#{post_id}")
           .form-actions
