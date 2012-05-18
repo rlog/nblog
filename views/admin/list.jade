@@ -7,10 +7,23 @@ block main
         tr
           td.gray(width="130")= article.formatDate
           td.comment-count(width="10") 
-            a.label.label-success(href="/admin/comment/list/#{article._id}", title="admin comments") 
+            a.label.label-success.show_comments(href="#", title="admin comments") 
               =article.comments.length
           td
             a(href="/post/#{article._id}", target="_blank")= article.title
+            - if (article.comments.length)
+              ul.comments
+                - each c in article.comments
+                  li
+                    - if (c.site)
+                      a.user(href="#{c.site}")= c.person
+                    - else
+                      span.user= c.person
+                    span.date= c.formatDate
+                    - if (c.mail)
+                      a.mail(href="mailto:#{c.mail}")= c.mail 
+                    a.comment_del(href="#{c._id}", title="Delete!") X
+                    div.comment= c.comment
           td.op(width="140")
             a.btn.btn-mini(href="/admin/post/edit/#{article._id}") Edit
             &nbsp;

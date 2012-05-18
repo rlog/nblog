@@ -45,6 +45,7 @@ exports.addComment = function(req, res){
 	articleProvider.addComment(req.param('_id'), {
 		person: req.param('person'),
 		site: req.param('site'),
+		mail: req.param('email'),
 		comment: req.param('comment'),
     created_at: new Date()
 	}, function(error, docs){

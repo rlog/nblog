@@ -47,3 +47,35 @@ h2 {
 #file_list .file {max-width:136px; padding:2px; border:1px solid #eee; display:block; cursor:pointer; margin:5px 0;}
 #file_list .file:hover {border:1px solid #ccc; background:#ddd;}
 
+.table p.title a {font-size:14px;}
+/* comments list */
+.comments {
+  margin: 5px 0 0 10px;
+  display:none;
+}
+.comments li {
+  list-style: none;
+  border-top: 1px solid #ddd;
+  padding:5px;
+  background:#fff;
+}
+.comments li .comment_del{
+  color:#666;
+  padding:0 3px;
+}
+.comments li .comment_del:hover{
+  background:#f00;
+  color:#fff;
+}
+.comments li span,
+.comments li a{
+  padding-right:5px;
+}
+.comments li span.date{
+  color:#aaa;
+}
+.comments li .comment{
+  color:#999;
+}
+
+

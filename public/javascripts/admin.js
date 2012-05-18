@@ -32,7 +32,7 @@ $(function(){
       if(data.type.indexOf('image/') !== -1){
         $("#file_list").append('<img class="file" data-path="'+data.path+'" data-name="'+data.name+'" src="'+data.path+'" />');
       } else {
-        $("#file_list").append('<span class="file" data-path="'+data.path+'" data-name="'+data.name+'">'+data.name+'</span>');
+      $("#file_list").append('<span class="file" data-path="'+data.path+'" data-name="'+data.name+'">'+data.name+'</span>');
       }
     }
   }).find("#newfile").change(function () {
@@ -65,5 +65,11 @@ $(".lab_list").delegate("a", "click", function(){
   }
   return false;
 })
+
+//show comments
+$(".show_comments").click(function(){
+  $(this).parents("tr").find(".comments").toggle();
+})
+
 
 })

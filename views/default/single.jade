@@ -5,9 +5,11 @@ block content
     aside 
       p.date= formatDate 
       p.tags
-        - each tag in tags
-          - var a_tag = "#" + tag + "&nbsp;";
-          a(href="/tag/#{tag}")= a_tag 
+        - if (tags) {
+          - each tag in tags
+            - var a_tag = "#" + tag + "&nbsp;";
+            a(href="/tag/#{tag}")= a_tag 
+        - }
       p.share twitter,facebook,douban
     .post
       h3= tit
