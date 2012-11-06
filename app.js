@@ -80,9 +80,9 @@ app.post('/admin/fileupload', function(req, res){
     } else {
       res.json({
         'r': 'success', 
-        'type': req.files.thumbnail.type, 
-        'name': req.files.thumbnail.name, 
-        'path': '/uploads/' + date_name + '_' + file_name 
+        'type': req.files.thumbnail.type,
+        'name': req.files.thumbnail.name,
+        'path': '/uploads/' + date_name + '_' + file_name
       });
     };
   });

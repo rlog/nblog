@@ -69,7 +69,7 @@ nav {
 }
 
 #main {
-  width:980px;
+  width:810px;
   margin:0 auto;
 }
 
@@ -120,6 +120,9 @@ article aside{
   padding-top:45px;
   font-size:12px;
   color:#aaa;
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid #eee;
 }
 article aside a{ 
   color: #aaa;
@@ -135,11 +138,10 @@ article h3, article h3 a{
   font-size:24px;
   margin-bottom:20px;
 }
-article .post{ 
-  float:right;
+article .post{
   zoom:1;
   overflow: hidden;
-  width:778px;
+  width:600px;
 }
 article .post .content{ 
   line-height:1.8em;
@@ -153,8 +155,10 @@ article .post .content{
 .post .content h5 {font-size:13px; font-weight:bold; margin: 20px 0 10px;}
 .post .content h6 {font-size:12px; font-weight:bold; margin: 20px 0 10px;}
 .post .content p {margin-bottom: 20px;}
+.post .content blockquote {border-left: 3px solid #eee; margin-left: 10px; padding-left: 10px;}
+.post .content blockquote p {margin-bottom: 0;}
 .post .content p a {padding:0 2px;}
-.post .content img {max-width:770px; padding:2px; border:1px solid #ddd;}
+.post .content img {max-width:600px; border-radius: 4px;}
 .post .content ul {list-style: decimal outside none; padding-left:30px;} 
 .post .content ol {list-style: disc outside none; padding-left:30px;}
 .post .content em, .post .content strong {font-weight: bold;}
