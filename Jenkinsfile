@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Check Node') {
       steps {
-        sh 'node -v'
+        sh '''pwd
+node -v'''
       }
     }
     stage('Install Dep') {
